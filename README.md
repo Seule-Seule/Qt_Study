@@ -55,6 +55,27 @@
       - 定义信号函数指针 `void (Teacher::*pTeStCl)(QString bookName) = &Teacher::startClass;`
       - 定义槽函数函数指针 `void (Student::*pStTaBo)(QString bookName) = &Student::teakBook;`
       - 信号和槽连接 `connect(pTh,pTeStCl,pSd, pStTaBo );`
+  - 连接按钮点击信号和上课触发信号
+    - `void (Widget::*pclassBing)(void) = &Widget::ClassBing;`
+    - `connect(btn, &QPushButton::clicked, this, pclassBing);`
+  - 信号和信号连接
+    - `void (Teacher::*pTeStCl2)(void) = &Teacher::startClass;`
+    - `void (Student::*pStTaBo2)(void) = &Student::teakBook;`
+    - `connect(pTh,pTeStCl2,pSd, pStTaBo2);`
+    - `connect(btn, &QPushButton::clicked,pTh,pTeStCl2);`
+  - 断开连接
+    - `disconnect(pTh,pTeStCl2,pSd, pStTaBo2);`
+  - 总结理论
+    - 信号可以连接信号
+    - 一个信号可以连接多个信号和槽函数
+    - 多个信号连接一个槽函数
+    - 信号和槽函数的类型必须一一对应
+    - 信号的参数可以多余槽函数，反之不行
+  - Qt4以前信号和槽连接方式
+    - `connect(btn, SIGNAL(clicked()),pTh, SLOT(teakBook()));`
+    - `connect(pTh, SIGNAL(startClass()), pSd, SLOT(teakBook()));`
+    - 优点：参数清晰  缺点：不进行类型检查，编译不报错，运行出错，很难查
+
 
 ## 主要开发者
 
