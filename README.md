@@ -75,6 +75,18 @@
     - `connect(btn, SIGNAL(clicked()),pTh, SLOT(teakBook()));`
     - `connect(pTh, SIGNAL(startClass()), pSd, SLOT(teakBook()));`
     - 优点：参数清晰  缺点：不进行类型检查，编译不报错，运行出错，很难查
+  - lambda表达式
+      ```C++
+      [=](){
+          connect(btn, &QPushButton::clicked,pTh,pTeStCl2);
+      }();
+       ```
+    - lambda表达式
+    - []匿名函数   = 传递值 & 传递引用
+    - ()参数
+    - {}函数体
+    - mutable修饰 值传递变量 可以修改拷贝出的数据 不能修改本体
+    - 返回值 []()->returnType{};
 
 
 ## 主要开发者
