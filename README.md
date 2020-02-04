@@ -124,6 +124,27 @@
     - 工具栏中添加控件
       - `QPushButton * toolBtn = new QPushButton("Git");`
       - `mainToolBar->addWidget(toolBtn);`
+  - 状态栏 
+    - 创建 只能有一个
+      - `QStatusBar * statBar = statusBar();`
+    - 设置状态栏
+      - setStatusBar(statBar);
+    - 添加标签空间
+      - `QLabel * label1 = new QLabel("提示1",this);`
+      - `QLabel * label2 = new QLabel("提示2",this);`
+      - 左侧添加
+        - `statBar->addWidget(label1);
+      - 右侧添加
+        - `statBar->addPermanentWidget(label2);`
+  - 铆接部件 浮动窗口 
+    - 创建 可以有多个
+      - `QDockWidget * dock1 = new QDockWidget("浮动",this);`
+      - `addDockWidget(Qt::BottomDockWidgetArea,dock1);`
+    - 设置停靠位置
+      - `dock1->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea);`
+  - 设置中心部件 只能一个
+    - `QTextEdit * edit1 = new QTextEdit("编辑",this);`
+    - `setCentralWidget(edit1);`
   
 
 ## 主要开发者
