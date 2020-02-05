@@ -146,6 +146,13 @@
     - `QTextEdit * edit1 = new QTextEdit("编辑",this);`
     - `setCentralWidget(edit1);`
   
+- [Qt资源文件](04_QRecourse\mainwindow.cpp)
+  - 将资源文件拷贝到项目目录下
+  - 右键项目-> 添加新文件 -> Qt -> Qt Recourse File -> 给资源文件起名
+  - ResourceFile -> ResourceFile.qrc
+  - open in editor 添加资源
+  - 添加前缀 添加文件
+  - 添加Qt资源 ": + 前缀名 + 文件名"
 
 ## 主要开发者
 

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/cloudshell .png</file>
+        <file>Images/CMD.png</file>
+        <file>Images/git.png</file>
+        <file>Images/Qt.png</file>
+    </qresource>
+</RCC>
