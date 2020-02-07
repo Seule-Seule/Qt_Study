@@ -202,6 +202,13 @@
         - `QFont font = QFontDialog::getFont(&flag,QFont("宋体"),this, "字体选择");`
         - `qDebug() << "字体：" << font.family() << " 字号："<<font.pointSize()<<" 是否加粗："<<font.bold()<<" 是否倾斜："<<font.italic();`
 
+- [页面布局](06_Layouts\mainwindow.ui)
+  - 实现登陆窗口
+  - 利用布局方式， 进行窗口美化
+  -  选取 widget 进行布局， 水平布局 、 垂直布局、 栅格布局
+  - 给用户名、 密码 、 登录、 退出按钮进行布局
+  - 默认窗口控件之间有 9 间隙、 可以调整
+  - 利用弹簧进行布局
 
 
 ## 主要开发者
