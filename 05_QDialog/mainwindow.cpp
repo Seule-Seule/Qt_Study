@@ -3,7 +3,9 @@
 #include <QDialog>
 #include <QDebug>
 #include <QMessageBox>
-
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QFontDialog>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,7 +51,20 @@ MainWindow::MainWindow(QWidget *parent)
 //        }
 
         // 警告对话框
-        QMessageBox::warning(this, "WARNING", "警告");
+        // QMessageBox::warning(this, "WARNING", "警告");
+
+        // 颜色对话框
+   //    QColor col = QColorDialog::getColor(QColor(255,0,0));
+   //    qDebug() << "r: "<<col.red() << "  g:"<<col.green() << "  b:"<<col.blue();
+
+        // 文件对话框
+//        QString fileName = QFileDialog::getOpenFileName(this,"打开文件","C:/Users/soul/Desktop","(*.txt)");
+//        qDebug()<< fileName.toUtf8().data();
+
+        // 字体对话框
+//        bool flag;
+//        QFont font = QFontDialog::getFont(&flag,QFont("宋体"),this, "字体选择");
+//        qDebug() << "字体：" << font.family() << " 字号："<<font.pointSize()<<" 是否加粗："<<font.bold()<<" 是否倾斜："<<font.italic();
 
     });
 
