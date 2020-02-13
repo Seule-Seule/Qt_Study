@@ -27,7 +27,7 @@
 
 ## 项目目录
 
-- [QPushButton](01_FIrstApp\firstwindow.cpp)
+- [QPushButton](01_FIrstApp/firstwindow.cpp)
   - 按钮定义`QPushButton *button = new QPushButton;`
   - 让button依赖于FirstWindow `button->setParent(this);`
   - 显示文本 `button->setText("按钮");`
@@ -37,7 +37,7 @@
   - 固定窗口大小 `setFixedSize(600,400);`
   - 设置窗口标题 `setWindowTitle("主窗口");`
 
-- [信号与槽函数](02_singalStoes\widget.cpp)
+- [信号与槽函数](02_singalStoes/widget.cpp)
   - 按钮点击，窗口关闭`connect(myBut, &QPushButton::clicked, this, &QMainWindow::close);`
   - 自定义信号
     - 返回值void 只需要声明 不需要实现
@@ -88,7 +88,7 @@
     - mutable修饰 值传递变量 可以修改拷贝出的数据 不能修改本体
     - 返回值 []()->returnType{};
 
-- [QMainWindows](03_QMainwindow\mainwindow.cpp)
+- [QMainWindows](03_QMainwindow/mainwindow.cpp)
 
   - 菜单栏
     - 只能有一个
@@ -146,7 +146,7 @@
     - `QTextEdit * edit1 = new QTextEdit("编辑",this);`
     - `setCentralWidget(edit1);`
   
-- [Qt资源文件](04_QRecourse\mainwindow.cpp)
+- [Qt资源文件](04_QRecourse/mainwindow.cpp)
   - 将资源文件拷贝到项目目录下
   - 右键项目-> 添加新文件 -> Qt -> Qt Recourse File -> 给资源文件起名
   - ResourceFile -> ResourceFile.qrc
@@ -154,7 +154,7 @@
   - 添加前缀 添加文件
   - 添加Qt资源 ": + 前缀名 + 文件名"
 
-- [对话框](05_QDialog\mainwindow.cpp)
+- [对话框](05_QDialog/mainwindow.cpp)
   - 分两类 模态对话框 非模态对话框
     - 模态对话框  不可对其他对话框进行操作 阻塞
       - `QDialog Dlg1(this);`
@@ -202,13 +202,88 @@
         - `QFont font = QFontDialog::getFont(&flag,QFont("宋体"),this, "字体选择");`
         - `qDebug() << "字体：" << font.family() << " 字号："<<font.pointSize()<<" 是否加粗："<<font.bold()<<" 是否倾斜："<<font.italic();`
 
-- [页面布局](06_Layouts\mainwindow.ui)
+- [页面布局](06_Layouts/mainwindow.ui)
   - 实现登陆窗口
   - 利用布局方式， 进行窗口美化
   -  选取 widget 进行布局， 水平布局 、 垂直布局、 栅格布局
   - 给用户名、 密码 、 登录、 退出按钮进行布局
   - 默认窗口控件之间有 9 间隙、 可以调整
   - 利用弹簧进行布局
+
+- [控件学习](07_QtControl/mainwindow.cpp)
+  - QPushButton 常用按钮
+  - QToolButton 工具按钮 、 列表显示选中项
+    - toolButtonStyle 突起风格 autoRaise
+  - radioButton 单选按钮， 设置默认( ui->rButMan->setChecked(true);)
+  - checkBox 多选按钮， 监听状态， 2 选中  1 半选   0 不选
+  - QListWidget  列表容器
+    - `QListWidgetItem * item = new QListWidgetItem("锄禾日当午");`
+    - `ui->listWidget->addItem(item);`
+    - `item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);  // 设置居中`
+    - 整个list添加
+      - `list << "锄禾日当午" << "汗滴禾下土" << "谁知盘中餐" << "粒粒皆辛苦";`
+      - `ui->listWidget->addItems(list);`
+  - [QTreeWidget 树控件](08_QtControl2/widget.cpp)
+    -设置水平头
+      - `ui->treeWidget->setHeaderLabels(QStringList()<< "英雄" << "英雄简介");`
+    - 添加顶层结点
+      - `QTreeWidgetItem * liItem = new QTreeWidgetItem(QStringList()<< "力量" );`
+      - `ui->treeWidget->addTopLevelItem(liItem);`
+    - 添加子层结点
+      - `QTreeWidgetItem * liItem1 = new QTreeWidgetItem(QStringList()<< "liItem1" << "简介1");`
+      - `liItem->addChild(liItem1);`
+  - [QTableWidget 表控件](09_QTableWidget/widget.cpp)
+    - 设置列数
+      - `ui->tableWidget->setColumnCount(3);`
+    - 设置水平表头
+      - `ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"姓名"<<"性别"<<"年龄");`
+    - 设置行数
+      - `ui->tableWidget->setRowCount(5);`
+    - 添加内容
+      ```c++
+      ui->tableWidget->setItem(0, 0, new QTableWidgetItem("张三"));
+      姓名
+        QStringList name;
+        name << "张三" << "李四" << "王五" << "周六" << "麻七" ;
+      性别
+        QList<QString> sex;
+        sex << "男" << "女" << "男" << "女"<< "男" ;
+      for (int i = 0; i< 5;i++)
+      {
+          int col = 0;
+          ui->tableWidget->setItem(i, col++, new QTableWidgetItem(name[i]));
+          ui->tableWidget->setItem(i, col++, new QTableWidgetItem(sex.at(i)));
+          // int -> QString
+          ui->tableWidget->setItem(i, col++, new QTableWidgetItem(QString::number(i+20)));
+      } 
+    ```
+
+  - [其他控件](10_OtherControl/widget.cpp)
+    - stackedWidget 栈控件
+      - 设置默认
+        - ui->stackedWidget->setCurrentIndex(0);
+      - 按钮切换
+
+        ```c++
+        connect(ui->btn_scrollArea, &QPushButton::clicked, [=](){
+            ui->stackedWidget->setCurrentIndex(0);
+        });
+        ```
+    - 下拉框
+      - 添加选项
+        - ui->comboBox->addItem("学生");
+      - 按钮选择下拉框选项
+        ```
+        connect(ui->btn_student, &QPushButton::clicked, [=](){
+           ui->comboBox->setCurrentIndex(0);
+        });
+         ```
+    - 利用QLable 显示图片
+      - ui->lal_Picture->setPixmap(QPixmap(":/Qt.png"));
+    - 利用QLable 显示动图 支持gif
+      - QMovie * movie = new QMovie(":/Qt.png");
+      - ui->lal_movie->setMovie(movie);
+      - movie->start();
 
 
 ## 主要开发者
