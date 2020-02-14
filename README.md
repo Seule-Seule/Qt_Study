@@ -285,6 +285,14 @@
       - ui->lal_movie->setMovie(movie);
       - movie->start();
 
+- [自定义控件封装](11_smallWidget/smallwidget.cpp)
+  - 添加新文件 Qt -设计师界面类(.h .cpp .ui)
+  - .ui中设计 spinBox 和 horizontalSlider 两个控件
+  - widget 中使用自定义控件， 拖拽一个新的 widget 点击提升为， 点击添加。 点击提升
+  - 实现功能， 改变数字，滑条跟随滑动， 信号槽监听
+  - 提供对外接口， setValue 和 getValue
+  - 测试接口
+
 
 ## 主要开发者
 
