@@ -293,6 +293,26 @@
   - 提供对外接口， setValue 和 getValue
   - 测试接口
 
+- [鼠标事件](12_QtEvent\mylabel.cpp)
+  - 设置一直捕捉鼠标移动
+    - `setMouseTracking(true);`
+  - 鼠标进入
+    - `void myLabel::enterEvent(QEvent *event)`
+  - 鼠标离开
+    - `void myLabel::leaveEvent(QEvent *event)`
+  - 鼠标移动
+    - `void myLabel::mouseMoveEvent(QMouseEvent *ev)`
+    - 捕捉鼠标左键 // 运动状态按键判断
+      `if (ev->buttons() & Qt::LeftButton)` 
+  - 鼠标点击
+    - `void myLabel::mousePressEvent(QMouseEvent *ev)`
+    - 捕捉鼠标左键// 瞬间状态按键判断
+      - `if (ev->button() == Qt::LeftButton)  `
+  - 鼠标释放
+    - `void myLabel::mouseReleaseEvent(QMouseEvent *ev)`
+  - 格式化字符串
+    - `QString str = QString("按键点击 X=%1 Y=%2 globalX=%3 globalY=%4").arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());`
+
 
 ## 主要开发者
 
