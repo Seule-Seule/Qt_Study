@@ -27,6 +27,8 @@ public:
     // 鼠标释放
     virtual void mouseReleaseEvent(QMouseEvent *ev) override;
 
+    // 在事件分发层 做事件拦截
+    bool event(QEvent *e) ;
 
 signals:
 

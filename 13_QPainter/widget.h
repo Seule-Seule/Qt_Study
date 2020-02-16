@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,15 +17,11 @@ public:
     ~Widget();
 
 public:
-    // 定时器
-    void timerEvent(QTimerEvent *e);
+    void paintEvent(QPaintEvent *event);
 
-    // 定时器ID
-    int time1Id;
-    int time2Id;
-
-    // label 的事件过滤器
-    bool eventFilter(QObject *watched, QEvent *event);
+    int cmdPixX = 0;
+    int cmdPixY = 0;
+    bool timerFlag = false;
 
 private:
     Ui::Widget *ui;

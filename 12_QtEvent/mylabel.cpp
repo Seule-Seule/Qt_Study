@@ -55,3 +55,19 @@ void myLabel::mouseReleaseEvent(QMouseEvent *ev)
     }
 
 }
+
+ bool myLabel::event(QEvent *e)
+ {
+    if (e->type()  == QEvent::MouseButtonPress)
+    {
+        QMouseEvent * ev = dynamic_cast<QMouseEvent *>(e);
+        QString str = QString("QEvent:: 按键点击 X=%1 Y=%2 globalX=%3 globalY=%4").arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
+        qDebug() << str;
+
+        // 表示用户处理， 不向下分发
+        return true;
+    }
+
+    // 其余事件扔给父类处理
+    return QLabel::event(e);
+ }

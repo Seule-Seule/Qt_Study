@@ -313,6 +313,51 @@
   - 格式化字符串
     - `QString str = QString("按键点击 X=%1 Y=%2 globalX=%3 globalY=%4").arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());`
 
+- [定时器](12_QtEvent\widget.cpp)
+  - 定时器使用方式1 定时器事件
+    - 重写定时器事件函数 `void Widget::timerEvent(QTimerEvent *e)`
+    - 启动定时器，返回定时器ID, 单位ms ` time1Id = startTimer(1000);`
+    - 在重写的定时器事件函数中判断timerId 执行操作`if(e->timerId() == time1Id){...}`
+  - 定时器使用方式2 定时器类 QTimer
+    - 定义定时器 `QTimer* timer3 = new QTimer(this);`
+    - 定时0.5s开始定时器 `timer3->start(500);`, 使用时监听timeout 信号
+    - 暂停定时器  `timer3->stop();`
+
+- [事件分发机制](12_QtEvent\mylabel.cpp)
+  - [事件分发示意图](12_QtEvent\事件分发机制.png)
+  - 重写事件分发函数 `bool event(QEvent *e)`
+  - 事件分发函数的返回值如果是true， 表示事件由用户处理，不向下分发
+  - 事件类型判断`if (e->type()  == QEvent::MouseButtonPress){...}`
+
+- [事件过滤器](12_QtEvent\widget.cpp)
+  - [事件过滤器机制图](12_QtEvent\事件过滤器.png)
+  - 在程序将事件分发到事件分发器之前，可以由事件过滤器过滤
+  - 事件过滤器使用步骤
+    - 给控件安装事件过滤器`ui->label->installEventFilter(this);`
+    - 重写事件过滤器函数`bool Widget::eventFilter(QObject *watched, QEvent *e);`
+
+- [画家事件QPainter](13_QPainter\widget.cpp)
+  - 重写画家事件函数，主动调用`void Widget::paintEvent(QPaintEvent *event)`
+  - 实例化画家对象 this指定画板`QPainter painter(this);`
+  - 设置画笔`QPen pen(QColor(255,0,0));`
+    - 设置画笔风格`pen.setStyle(Qt::DashDotDotLine);`
+    - 设置线宽`pen.setWidth(4);`
+    - `painter.setPen(pen);`
+  - 设置画刷`QBrush brush(QColor(0, 255, 0));`
+    - 设置风格`brush.setStyle(Qt::Dense7Pattern);`
+    - `painter.setBrush(brush);`
+  - 画线`painter.drawLine(QPoint(300,50), QPoint(300,500));`
+  - 画圆`painter.drawEllipse(QPoint(300,500),100, 100);`
+  - 画矩形`painter.drawRect(300, 50, 200, 200);`
+  - 画文字`painter.drawText(QPoint(300, 300),QString("好好学习，天天向上"));`
+  - 高级设置
+    - 设置抗锯齿能力 抗锯齿越高效率越低 `painter.setRenderHint(QPainter::HighQualityAntialiasing);`
+    - 保存画家状态 `painter.save();`
+    - 恢复画家状态 `painter.restore();`
+    - 移动画家 `painter.translate(200, 0);`
+  - 利用画家画图片 `painter.drawPixmap(QPoint(cmdPixX,cmdPixY), QPixmap(":/cloudshell .png"));`
+
+
 
 ## 主要开发者
 
