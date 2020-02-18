@@ -378,6 +378,28 @@
       - 加载操作文件 `picture.load("./PictureTest.cyp");`
       - 由画家画出来 `painter.drawPicture(0, 0, picture);`
 
+- [QFile 文件操作](15_Qt_QFile\widget.cpp)
+  - 创建文件对象 `QFile file(filePath);`
+  - 以只读方式打开文件 `file.open(QIODevice::ReadOnly);`
+  - 读文件所有行 `QByteArray array = file.readAll();`
+  - 读一行 `QByteArray array = file.readLine();`
+  - 文件结束符 `file.atEnd()`
+  - 显示文件内容 默认utf-8格式 `ui->TEdit_fileContent->setText(array);`
+    - 格式转换 
+      - `QTextCodec * gbk = QTextCodec::codecForName("gbk");`
+      - `ui->TEdit_fileContent->setText( gbk->toUnicode(array) );`
+  - 写文件打开准备 `file.open(QIODevice::Append); // 追加模式， 避免破坏源文件`
+  - 追加一行数据` file.write( "写文件测试" );`
+  - 关闭文件 `file.close();`
+  - QFileInfo 读取文件详细信息` QFileInfo fileInfo(filePath);`
+    - 大小：`fileInfo.size()`
+    - 后缀名：`fileInfo.suffix()`
+    - 文件名称：`fileInfo.fileName()`
+    - 文件路径：`fileInfo.filePath()`
+    - 文件创建日期：`fileInfo.created().toString("yyyy/MM/dd hh:mm:ss")`
+    - 文件最后修改日期：`fileInfo.lastModified().toString("yyyy-MM-dd hh:mm:ss");`
+
+        
     
 
 
