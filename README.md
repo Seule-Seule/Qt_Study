@@ -357,6 +357,30 @@
     - 移动画家 `painter.translate(200, 0);`
   - 利用画家画图片 `painter.drawPixmap(QPoint(cmdPixX,cmdPixY), QPixmap(":/cloudshell .png"));`
 
+- [QPaintDevice](14_QPaintDevice\widget.cpp)
+  - `QPixmap` 绘图设备 专门为平台做了对显示优化
+    - 定义`QPixmap` 对象`QPixmap pix = QPixmap(300, 300);`
+    - 背景填充 `pix.fill(Qt::white);`
+    - 由画家往上绘画 `QPainter painter(&pix);`
+    - 保存图像 `pix.save("./test.png");`
+  -  `QImage` 绘图设备   可以对像素进行访问
+    - 操作和`QPixmap`相似
+    - 对像素修改 
+      - `QRgb rgb = qRgb(255, 0, 0);`
+      - `img.setPixel(i, j, rgb);`
+  - `QBitmap `色深为1，即只有黑白
+  - `QPicture` 绘图设备 记录和重现画家操作
+    - 记录画家操作
+      - 开始往picture上画  记录画家操作 `painter.begin(&picture);`
+      - 结束往picture上画 `painter.end();`
+      - 保存操作过程为文件， 可以自定义后缀名 `picture.save("./PictureTest.cyp");`
+    - 重现画家操作
+      - 加载操作文件 `picture.load("./PictureTest.cyp");`
+      - 由画家画出来 `painter.drawPicture(0, 0, picture);`
+
+    
+
+
 
 
 ## 主要开发者
