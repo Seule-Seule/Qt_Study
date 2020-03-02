@@ -2,6 +2,7 @@
 #define MOVEBUTTON_H
 
 #include <QPushButton>
+#include <QMouseEvent>
 
 class MoveButton : public QPushButton
 {
@@ -19,6 +20,11 @@ public:
 
     // 按钮特效    true 向下跳  false 向上跳
     void buttomZoom(bool flag);
+
+    // 重写按钮点击事件
+    void mousePressEvent(QMouseEvent * e);
+
+    void mouseReleaseEvent(QMouseEvent * e);
 signals:
 
 };

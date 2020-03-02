@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/BackButton.png</file>
         <file>res/BackButtonSelected.png</file>
         <file>res/BackButtonSound.wav</file>
         <file>res/BoardNode.png</file>
@@ -22,5 +21,6 @@
         <file>res/PlayLevelSceneBg.png</file>
         <file>res/TapButtonSound.wav</file>
         <file>res/Title.png</file>
+        <file>res/BackButton.png</file>
     </qresource>
 </RCC>

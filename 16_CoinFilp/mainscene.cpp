@@ -4,6 +4,9 @@
 #include <QPixmap>
 #include "movebutton.h"
 #include <QDebug>
+#include "chooseleve.h"
+#include <QTimer>
+#include <QSound>
 
 MainScene::MainScene(QWidget *parent)
     : QMainWindow(parent)
@@ -25,15 +28,43 @@ MainScene::MainScene(QWidget *parent)
         this->close();
     });
 
+    // 选择关卡场景
+    chooseL = new  chooseLeve();
+
+    // 添加开始按钮音效
+    QSound * startSound = new QSound(":/res/TapButtonSound.wav");
+//    startSound->setLoops(-1);  // 设置循环次数 若循环次数为-1则永远循环
+//    startSound->play();
     // 开始按钮
     MoveButton * startButton = new MoveButton(":/res/MenuSceneStartButton.png");
     startButton->setParent(this);
     startButton->move(this->width()*0.5-startButton->width()*0.5, this->height()*0.7);
     connect(startButton, &MoveButton::clicked, [=](){
         // qDebug() << "开始按钮按下";
+        // 播放开始音效
+        startSound->play();
         // 弹下弹起特效
         startButton->buttomZoom(true);
         startButton->buttomZoom(false);
+
+        // 延时，进入下一个场景
+        QTimer::singleShot(300, this, [=](){
+            // 设置chooseL场景的位置
+            chooseL->setGeometry(this->geometry());
+            // 显示选择关卡场景
+            chooseL->show();
+            // 隐藏这个场景
+            this->hide();
+        });
+    });
+
+    // 连接选择关卡返回信号
+    connect(chooseL, &chooseLeve::returnBtnDown, [=](){
+        this->setGeometry(chooseL->geometry());
+        // 显示选择关卡场景
+        chooseL->hide();
+        // 隐藏这个场景
+        this->show();
     });
 
 }

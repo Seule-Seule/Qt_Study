@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include "chooseleve.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainScene; }
 QT_END_NAMESPACE
@@ -17,6 +18,9 @@ public:
 
     // 重写画家事件 ，加载背景图
     void paintEvent(QPaintEvent *ev);
+
+    // 选择关卡场景
+    chooseLeve * chooseL = NULL;
 
 private:
     Ui::MainScene *ui;

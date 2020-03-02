@@ -18,7 +18,7 @@ MoveButton::MoveButton(QString normalImg, QString pressImg)
     bool ret = pix.load(normalImgPath);
     if (!ret)
     {
-        qDebug() << "图片" << normalImg << "加载失败";
+        qDebug() << "图片" << normalImgPath << "加载失败";
         return;
     }
 
@@ -65,4 +65,68 @@ void MoveButton::buttomZoom(bool flag)
     // 启动执行动画
     animation->start();
 
+}
+
+
+// 重写按钮点击事件
+void MoveButton::mousePressEvent(QMouseEvent * e)
+{
+    if (this->pressImgPath != "")
+    {
+        //QPainter painter(this);
+        QPixmap pix;
+
+        bool ret = pix.load(pressImgPath);
+        if (!ret)
+        {
+            qDebug() << "图片" << this->pressImgPath << "加载失败";
+            return;
+        }
+
+        // 设置按钮固定大小
+        this->setFixedSize(QSize(pix.width(), pix.height()));
+
+        // 设置不规则样式
+        this->setStyleSheet("QPushButton{border:0px}");
+
+        // 设置图标
+        this->setIcon(pix);
+
+        // 设置图标大小
+        this->setIconSize(QSize(pix.width(), pix.height()));
+    }
+
+    // 其余点击事件由父类处理
+    return QPushButton::mousePressEvent(e);
+}
+
+void MoveButton::mouseReleaseEvent(QMouseEvent * e)
+{
+    if (this->pressImgPath != "")
+    {
+        //QPainter painter(this);
+        QPixmap pix;
+
+        bool ret = pix.load(normalImgPath);
+        if (!ret)
+        {
+            qDebug() << "图片" << this->normalImgPath << "加载失败";
+            return;
+        }
+
+        // 设置按钮固定大小
+        this->setFixedSize(QSize(pix.width(), pix.height()));
+
+        // 设置不规则样式
+        this->setStyleSheet("QPushButton{border:0px}");
+
+        // 设置图标
+        this->setIcon(pix);
+
+        // 设置图标大小
+        this->setIconSize(QSize(pix.width(), pix.height()));
+    }
+
+    // 其余点击事件由父类处理
+    return QPushButton::mouseReleaseEvent(e);
 }
